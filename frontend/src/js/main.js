@@ -12,18 +12,19 @@ async function fetchData(keyword) {
 }
 
 function updateUI(data) {
-  const resultsDiv = document.getElementById("results");
+  const resultsDiv = document.getElementById("main-grid");
   resultsDiv.innerHTML = "";
 
   data.forEach(product => {
-    const productDiv = document.createElement("div");
-    productDiv.innerHTML = `
+    const productCard = document.createElement("div");
+    productCard.classList.add("card");
+    productCard.innerHTML = `
       <h3>${product.title}</h3>
       <p>Rating: ${product.rating}</p>
       <p>Reviews: ${product.reviews}</p>
       <img src="${product.image}" alt="${product.title}">
     `;
-    resultsDiv.appendChild(productDiv);
+    resultsDiv.appendChild(productCard);
   });
 }
 

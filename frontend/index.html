@@ -1,14 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <title>Amazon Scraper</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Amazon Scraper</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/style/style.css" />
   </head>
   <body>
-    <input type="text" id="keyword" placeholder="Enter keyword" />
-    <button id="scrape__btn">Scrape</button>
-    <div id="results"></div>
+    <header>
+      <h1>Web Scraper</h1>
+    </header>
+    <section id="scraper__input">
+      <input type="text" id="keyword" placeholder="Enter keyword" />
+      <button id="scrape__btn">Scrape</button>
+    </section>
+    <main>
+      <div id="main-grid"></div>
+    </main>
 
     <script src="./src/js/main.js"></script>
   </body>

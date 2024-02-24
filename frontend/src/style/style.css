@@ -24,6 +24,10 @@ footer, header, hgroup, menu, nav, section {
 	display: block;
 }
 body {
+	width: 100%;
+	max-width: 1200px;
+	margin: 0 auto;
+	font-family: 'Ubuntu', sans-serif;
 	line-height: 1;
 }
 ol, ul {
@@ -40,4 +44,67 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+
+header {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	height: 2.5rem;
+}
+
+#scraper__input {
+	width: 100%;
+	max-width: 700px;
+	margin: 0 auto;
+	display: flex;
+	height: 2.5rem;
+	border-radius: 5px;
+	padding: 0 1rem;
+	gap: 1rem;
+	margin-bottom: 2rem;
+
+	> input {
+		width: 100%;
+		height: 100%;
+		border: 1px solid gray;
+		border-radius: 5px;
+		padding: 0 1rem;
+
+		&:focus {
+			border-color: #424242;
+		}
+	}
+
+	> button {
+		height: 100%;
+		border: 1px solid gray;
+		border-radius: 5px;
+		padding: 0 1rem;
+		background-color: #424242;
+		color: white;
+		cursor: pointer;
+
+		&:hover {
+			background-color: #333;
+		}
+	}
+}
+
+#main-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.card img {
+  max-width: 100%;
+  height: auto;
 }
