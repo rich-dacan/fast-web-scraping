@@ -16,15 +16,17 @@ function updateUI(data) {
   resultsDiv.innerHTML = "";
 
   data.forEach(product => {
-    const productCard = document.createElement("div");
-    productCard.classList.add("card");
-    productCard.innerHTML = `
+    if (product.title) {
+      const productCard = document.createElement("div");
+      productCard.classList.add("card");
+      productCard.innerHTML = `
       <h3>${product.title}</h3>
       <p>Rating: ${product.rating}</p>
       <p>Reviews: ${product.reviews}</p>
       <img src="${product.image}" alt="${product.title}">
     `;
-    resultsDiv.appendChild(productCard);
+      resultsDiv.appendChild(productCard);
+    }
   });
 }
 

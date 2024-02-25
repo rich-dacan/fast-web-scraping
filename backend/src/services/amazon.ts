@@ -13,8 +13,6 @@ export const scrapAmazonService = async (keyword: string) => {
   const response = await axios.get(url, { headers });
   const $ = cheerio.load(response.data);
 
-  // console.log(response.data);
-
   const products: {
     title: string;
     rating: string;
@@ -36,8 +34,6 @@ export const scrapAmazonService = async (keyword: string) => {
 
     products.push({ title, rating, reviews, image });
   });
-
-  console.log(products);
 
   return products;
 };
