@@ -1,23 +1,30 @@
+// Função principal responsável por buscar os dados na API e retornar um array de objetos com os dados dos produtos, com as devidas tratativas de erros
 async function fetchData(keyword) {
   document.getElementById('loader').style.display = 'block';
-  try {
-    const response = await fetch(
-      `http://localhost:3333/api/amazon-scraping?keyword=${keyword}`
-    );
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Erro ao buscar dados:", error);
-    return [];
+
+  if (keyword.length > 0) {
+    try {
+      const response = await fetch(
+        `http://localhost:3333/api/amazon-scraping?keyword=${keyword}`
+      );
+      const data = await response.json();
+      return data;
+    } catch (error) {
+      console.error("Erro ao buscar dados:", error);
+      return [];
+    }
+  } else {
+    document.getElementById('loader').style.display = 'none';
   }
 }
 
+// Função responsável por montar a interface do usuário com os dados retornados da API
 function updateUI(data) {
-  document.getElementById('loader').style.display = 'none';
   const resultsDiv = document.getElementById("main__grid");
   resultsDiv.innerHTML = "";
 
   if (data.length === 0) {
+    document.getElementById('loader').style.display = 'none';
     resultsDiv.innerHTML = "<p>Nenhum resultado encontrado</p>";
     return;
   } else {

@@ -46,6 +46,23 @@ table {
 	border-spacing: 0;
 }
 
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #424242;
+	border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 header {
 	width: 100%;
 	display: flex;
@@ -121,6 +138,7 @@ header {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
+	margin: 50px 0;
 
 	@media (max-width: 768px) {
 		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -156,6 +174,14 @@ header {
   height: 100%;
 	max-height: 200px;
   object-fit: cover;
+	transition: all 0.3s ease-in-out;
+	border-radius: 8px;
+
+	&:hover {
+		height: auto;
+		max-height: max-content;
+		transition: all 0.3s ease-in-out;
+	}
 }
 
 .card h3 {

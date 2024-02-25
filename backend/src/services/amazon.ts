@@ -12,10 +12,12 @@ export const scrapAmazonService = async (keyword: string) => {
   };
 
   const response = await axios.get(url, { headers });
+  // AquiAqui uso o cheerio para fazer o scraping da página, fazendo o parse do HTML
   const $ = cheerio.load(response.data);
 
   const products: ProductType[] = [];
 
+  // Aqui eu faço o scraping dos dados que eu quero para montar o objeto que será retornado
   $(".s-result-item").each((index, element) => {
     const title: string = $(element).find("h2").text().trim();
     const rating: string = $(element)
