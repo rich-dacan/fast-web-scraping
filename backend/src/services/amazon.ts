@@ -1,5 +1,6 @@
 import cheerio from "cheerio";
 import axios from "axios";
+import { ProductType } from "../@types";
 
 export const scrapAmazonService = async (keyword: string) => {
   const url: string = `https://www.amazon.com/s?k=${keyword}`;
@@ -13,12 +14,7 @@ export const scrapAmazonService = async (keyword: string) => {
   const response = await axios.get(url, { headers });
   const $ = cheerio.load(response.data);
 
-  const products: {
-    title: string;
-    rating: string;
-    reviews: string;
-    image: string;
-  }[] = [];
+  const products: ProductType[] = [];
 
   $(".s-result-item").each((index, element) => {
     const title: string = $(element).find("h2").text().trim();
@@ -31,8 +27,12 @@ export const scrapAmazonService = async (keyword: string) => {
       .text()
       .trim();
     const image: string = $(element).find("img").attr("src") || "";
+    const priceFraction = $(element).find(".price__fraction").text().trim();
+    const priceDecimals = $(element).find(".price__decimals").text().trim();
+    const price = `${priceFraction},${priceDecimals}`;
+    const link = $(element).find(".item__info-link").attr("href");
 
-    products.push({ title, rating, reviews, image });
+    products.push({ title, rating, reviews, image, price, link });
   });
 
   return products;

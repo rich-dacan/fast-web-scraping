@@ -20,10 +20,10 @@ function updateUI(data) {
       const productCard = document.createElement("div");
       productCard.classList.add("card");
       productCard.innerHTML = `
-      <h3>${product.title}</h3>
+      <img src="${product.image}" alt="${product.title}">
+      <h3 title="${product.title}">${product.title}</h3>
       <p>Rating: ${product.rating}</p>
       <p>Reviews: ${product.reviews}</p>
-      <img src="${product.image}" alt="${product.title}">
     `;
       resultsDiv.appendChild(productCard);
     }
@@ -32,7 +32,6 @@ function updateUI(data) {
 
 document.getElementById("scrape__btn").addEventListener("click", async () => {
   const keyword = document.getElementById("keyword").value;
-  console.log(keyword);
   const data = await fetchData(keyword);
   updateUI(data);
 });

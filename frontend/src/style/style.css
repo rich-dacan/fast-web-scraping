@@ -90,21 +90,88 @@ header {
 			background-color: #333;
 		}
 	}
+
+	@media (max-width: 600px) {
+		flex-direction: column;
+		max-width: 300px;
+		margin-bottom: 3rem;
+
+		> button {
+			width: 100px;
+		}
+	}
 }
 
 #main-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
+
+	@media (max-width: 768px) {
+		grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+		place-items: center;
+	}
 }
 
 .card {
   border: 1px solid #ccc;
   border-radius: 8px;
   padding: 20px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 2.7px 2.7px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.25) 0px 2.7px 2.7px;
+	-moz-box-shadow: rgba(0, 0, 0, 0.25) 0px 2.7px 2.7px;
+	transition: all 0.3s ease;
+	cursor: pointer;
+
+	&:hover {
+		box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
+		-webkit-box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
+		-moz-box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
+		transform: scale(1.03);
+	}
+
+	@media (max-width: 600px) {
+		width: 100%;
+		max-width: 300px;
+	}
 }
 
 .card img {
-  max-width: 100%;
-  height: auto;
+  width: 100%;
+  height: 100%;
+	max-height: 200px;
+  object-fit: cover;
+}
+
+.card h3 {
+  margin: 1rem 0;
+  line-height: normal;
+  max-width: 150ch;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  position: relative;
+}
+
+.card h3::after {
+  content: "";
+  text-align: right;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 20%;
+  height: 1.2em;
+  background: linear-gradient(to right, transparent, white 50%);
+}
+
+.card p {
+	margin: 1rem 0;
+	line-height: normal;
+	max-width: 150ch;
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 3;
+	-webkit-box-orient: vertical;
+	position: relative;
 }
