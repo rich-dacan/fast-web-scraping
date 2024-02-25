@@ -1,4 +1,5 @@
 async function fetchData(keyword) {
+  document.getElementById('loader').style.display = 'block';
   try {
     const response = await fetch(
       `http://localhost:3333/api/amazon-scraping?keyword=${keyword}`
@@ -12,6 +13,7 @@ async function fetchData(keyword) {
 }
 
 function updateUI(data) {
+  document.getElementById('loader').style.display = 'none';
   const resultsDiv = document.getElementById("main__grid");
   resultsDiv.innerHTML = "";
 
@@ -20,6 +22,7 @@ function updateUI(data) {
     return;
   } else {
     document.getElementById('welcome__screen').style.display = 'none';
+    document.getElementById('loader').style.display = 'none';
 
     data.forEach((product) => {
       if (product.title) {
