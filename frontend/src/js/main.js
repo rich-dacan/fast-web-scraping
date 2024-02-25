@@ -12,26 +12,46 @@ async function fetchData(keyword) {
 }
 
 function updateUI(data) {
-  const resultsDiv = document.getElementById("main-grid");
+  const resultsDiv = document.getElementById("main__grid");
   resultsDiv.innerHTML = "";
 
-  data.forEach(product => {
-    if (product.title) {
-      const productCard = document.createElement("div");
-      productCard.classList.add("card");
-      productCard.innerHTML = `
-      <img src="${product.image}" alt="${product.title}">
-      <h3 title="${product.title}">${product.title}</h3>
-      <p>Rating: ${product.rating}</p>
-      <p>Reviews: ${product.reviews}</p>
-    `;
-      resultsDiv.appendChild(productCard);
-    }
-  });
+  if (data.length === 0) {
+    resultsDiv.innerHTML = "<p>Nenhum resultado encontrado</p>";
+    return;
+  } else {
+    document.getElementById('welcome__screen').style.display = 'none';
+
+    data.forEach((product) => {
+      if (product.title) {
+        const productCard = document.createElement("div");
+        productCard.classList.add("card");
+        productCard.innerHTML = `
+        <img src="${product.image}" alt="${product.title}">
+        <h3 title="${product.title}">${product.title}</h3>
+        <p>Rating: ${product.rating}</p>
+        <p>Reviews: ${product.reviews}</p>
+      `;
+        resultsDiv.appendChild(productCard);
+      }
+    });
+  }
 }
 
+// Event listener responsável por chamar a função fetchData e updateUI quando o botão de busca for clicado, montando a interface do usuário com os dados retornados
 document.getElementById("scrape__btn").addEventListener("click", async () => {
   const keyword = document.getElementById("keyword").value;
   const data = await fetchData(keyword);
   updateUI(data);
+});
+
+// Simples função para mostrar um toast quando o usuário tentar buscar sem preencher o campo de busca
+document.getElementById('scrape__btn').addEventListener('click', function() {
+  let keyword = document.getElementById('keyword').value;
+  if (keyword.length === 0) {
+    let toast = document.getElementById('toast');
+    toast.style.visibility = 'visible';
+    setTimeout(function() {
+      toast.style.visibility = 'hidden';
+    }, 3000);
+  }
 });

@@ -54,6 +54,20 @@ header {
 	height: 2.5rem;
 }
 
+#welcome__screen {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	margin: 20px;
+
+	> h2 {
+		font-size: 2rem;
+		margin-bottom: 2rem;
+	}
+}
+
 #scraper__input {
 	width: 100%;
 	max-width: 700px;
@@ -102,7 +116,8 @@ header {
 	}
 }
 
-#main-grid {
+#main__grid {
+	display: none;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 20px;
@@ -174,4 +189,28 @@ header {
 	-webkit-line-clamp: 3;
 	-webkit-box-orient: vertical;
 	position: relative;
+}
+
+#toast {
+	visibility: hidden;
+	position: fixed;
+	top: 1rem;
+	right: 1rem;
+	background-color: #424242;
+	color: white;
+	padding: 1rem;
+	border-radius: 5px;
+	box-shadow: rgba(0, 0, 0, 0.25) 0px 2.7px 2.7px;
+	-webkit-box-shadow: rgba(0, 0, 0, 0.25) 0px 2.7px 2.7px;
+	-moz-box-shadow: rgba(0, 0, 0, 0.25) 0px 2.7px 2.7px;
+	transition: all 0.3s ease;
+	cursor: pointer;
+
+
+	&:hover {
+		box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
+		-webkit-box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
+		-moz-box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 4px;
+		transform: scale(1.03);
+	}
 }
